@@ -30,7 +30,7 @@
             "post": {
                 "security": [],
                 "tags": [
-                    "User"
+                    "Auth"
                 ],
                 "summary": "Register a new user",
                 "description": "Register a new user",
@@ -101,7 +101,7 @@
             "post": {
                 "security": [],
                 "tags": [
-                    "User"
+                    "Auth"
                 ],
                 "summary": "Login a user",
                 "description": "Login a user",
@@ -167,7 +167,7 @@
             "delete": {
                 "security": [],
                 "tags": [
-                    "User"
+                    "Auth"
                 ],
                 "summary": "Logout a user",
                 "description": "Logout a user",
@@ -197,7 +197,7 @@
             "get": {
                 "security": [],
                 "tags": [
-                    "User"
+                    "Auth"
                 ],
                 "summary": "Check if user is logged in",
                 "description": "Check if user is logged in",
@@ -253,6 +253,11 @@
                                         "type": "string",
                                         "description": "Content",
                                         "example": "test"
+                                    },
+                                    "privacy": {
+                                        "type": "string",
+                                        "description": "Privacy",
+                                        "example": "public"
                                     }
                                 }
                             }
@@ -336,8 +341,8 @@
                 }
             }
         },
-        "/api/v1/search": {
-            "get": {
+        "/api/v1/post/{post_id}": {
+            "patch": {
                 "security": [
                     {
                         "cookieAuth": [
@@ -348,17 +353,320 @@
                 "tags": [
                     "Post"
                 ],
+                "summary": "Update a post",
+                "description": "Update a post",
+                "operationId": "updatePost",
+                "parameters": [
+                    {
+                        "name": "post_id",
+                        "in": "path",
+                        "description": "Post ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "description": {
+                                        "type": "string",
+                                        "description": "Content",
+                                        "example": "test"
+                                    },
+                                    "privacy": {
+                                        "type": "string",
+                                        "description": "Privacy",
+                                        "example": "public"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "title": {
+                                            "type": "string",
+                                            "description": "Title",
+                                            "example": "test"
+                                        },
+                                        "content": {
+                                            "type": "string",
+                                            "description": "Content",
+                                            "example": "test"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete" : {
+                "security": [
+                    {
+                        "cookieAuth": [
+                            "JSESSIONID"
+                        ]
+                    }
+                ],
+                "tags": [
+                    "Post"
+                ],
+                "summary": "Delete a post",
+                "description": "Delete a post",
+                "operationId": "deletePost",
+                "parameters": [
+                    {
+                        "name": "post_id",
+                        "in": "path",
+                        "description": "Post ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Message",
+                                            "example": "Post deleted"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get" : {
+                "security": [
+                    {
+                        "cookieAuth": [
+                            "JSESSIONID"
+                        ]
+                    }
+                ],
+                "tags": [
+                    "Post"
+                ],
+                "summary": "Get a post",
+                "description": "Get a post",
+                "operationId": "getPost",
+                "parameters": [
+                    {
+                        "name": "post_id",
+                        "in": "path",
+                        "description": "Post ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "title": {
+                                            "type": "string",
+                                            "description": "Title",
+                                            "example": "test"
+                                        },
+                                        "content": {
+                                            "type": "string",
+                                            "description": "Content",
+                                            "example": "test"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+        "/api/v1/like/post/{post_id}" : {
+            "post" : {
+                "security": [
+                    {
+                        "cookieAuth": [
+                            "JSESSIONID"
+                        ]
+                    }
+                ],
+                "tags": [
+                    "Like"
+                ],
+                "summary": "Like a post",
+                "description": "Like a post",
+                "operationId": "likePost",
+                "parameters": [
+                    {
+                        "name": "post_id",
+                        "in": "path",
+                        "description": "Post ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Message",
+                                            "example": "Post liked"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/post/likes/{post_id}" : {
+            "get" : {
+                "security": [
+                    {
+                        "cookieAuth": [
+                            "JSESSIONID"
+                        ]
+                    }
+                ],
+                "tags": [
+                    "Like"
+                ],
+                "summary": "Get likes of a post",
+                "description": "Get likes of a post",
+                "operationId": "getPostLikes",
+                "parameters": [
+                    {
+                        "name": "post_id",
+                        "in": "path",
+                        "description": "Post ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "Offset",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "likes": {
+                                            "type": "array",
+                                            "description": "Likes",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+        "/api/v1/search": {
+            "get": {
+                "security": [
+                    {
+                        "cookieAuth": [
+                            "JSESSIONID"
+                        ]
+                    }
+                ],
+                "tags": [
+                    "Search"
+                ],
                 "summary": "Search for posts",
                 "description": "Search for posts",
                 "operationId": "searchPosts",
                 "parameters": [
                     {
-                        "name": "query",
+                        "name": "q",
                         "in": "query",
                         "description": "Query",
                         "required": true,
                         "schema": {
                             "type": "string"
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "Type",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "Offset",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
                         }
                     }
                 ],
@@ -1187,7 +1495,7 @@
                             "schema": {
                                 "type": "object",
                                 "properties": {
-                                    "message": {
+                                    "text": {
                                         "type": "string",
                                         "description": "Message",
                                         "example": "test"
@@ -1234,17 +1542,6 @@
                 "summary": "Get messages",
                 "description": "Get messages",
                 "operationId": "getMessages",
-                "parameters": [
-                    {
-                        "name": "username",
-                        "in": "query",
-                        "description": "Username",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Successful operation",
@@ -1284,17 +1581,6 @@
                 "summary": "Get unread messages",
                 "description": "Get unread messages",
                 "operationId": "getUnreadMessages",
-                "parameters": [
-                    {
-                        "name": "username",
-                        "in": "query",
-                        "description": "Username",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Successful operation",
@@ -1433,12 +1719,12 @@
                 "operationId": "getNotifications",
                 "parameters": [
                     {
-                        "name": "username",
+                        "name": "offset",
                         "in": "query",
-                        "description": "Username",
-                        "required": true,
+                        "description": "Offser",
+                        "required": false,
                         "schema": {
-                            "type": "string"
+                            "type": "integer"
                         }
                     }
                 ],
@@ -1481,17 +1767,6 @@
                 "summary": "Get unread notifications",
                 "description": "Get unread notifications",
                 "operationId": "getUnreadNotifications",
-                "parameters": [
-                    {
-                        "name": "username",
-                        "in": "query",
-                        "description": "Username",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Successful operation",
@@ -1531,17 +1806,6 @@
                 "summary": "Mark notification as read",
                 "description": "Mark notification as read",
                 "operationId": "markNotificationAsRead",
-                "parameters": [
-                    {
-                        "name": "username",
-                        "in": "query",
-                        "description": "Username",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Successful operation",
@@ -1601,6 +1865,136 @@
                                             "type": "string",
                                             "description": "Content",
                                             "example": "test"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/{username}": {
+            "get": {
+                "security": [
+                    {
+                        "cookieAuth": [
+                            "JSESSIONID"
+                        ]
+                    }
+                ],
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get user",
+                "description": "Get user",
+                "operationId": "getUser",
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "path",
+                        "description": "Username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "description": {
+                                            "type": "string",
+                                            "description": "Content",
+                                            "example": "test"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "api/v1/{username}/edit" : {
+            "patch" : {
+                "security" : [
+                    {
+                        "cookieAuth" : [
+                            "JSESSIONID"
+                        ]
+                    }
+                ],
+                "tags" : [
+                    "User"
+                ],
+                "summary" : "Edit user",
+                "description" : "Edit user",
+                "operationId" : "editUser",
+                "parameters" : [
+                    {
+                        "name" : "username",
+                        "in" : "path",
+                        "description" : "Username",
+                        "required" : true,
+                        "schema" : {
+                            "type" : "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "firstname": {
+                                        "type": "string",
+                                        "description": "First name",
+                                        "example": "test"
+                                    },
+                                    "lastname": {
+                                        "type": "string",
+                                        "description": "Last name",
+                                        "example": "test"
+                                    },
+                                    "bio": {
+                                        "type": "string",
+                                        "description": "Email",
+                                        "example": "test"
+                                    },
+                                    "birthday": {
+                                        "type": "string",
+                                        "description": "Password",
+                                        "example": "test"
+                                    },
+                                    "gender": {
+                                        "type": "string",
+                                        "description": "Phone",
+                                        "example": "test"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "200" : {
+                        "description" : "Successful operation",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",
+                                    "properties" : {
+                                        "description" : {
+                                            "type" : "string",
+                                            "description" : "Content",
+                                            "example" : "test"
                                         }
                                     }
                                 }
