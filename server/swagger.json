@@ -15,7 +15,7 @@
             "cookieAuth": {
                 "type": "apiKey",
                 "in": "cookie",
-                "name": "JSESSIONID"
+                "name": "foodie"
             }
         },
         "schemas": {}
@@ -88,8 +88,7 @@
                             "Set-Cookie": {
                                 "schema": {
                                     "type": "string",
-                                    "description": "Set-Cookie",
-                                    "example": "foodie=abcde12345; Path=/; HttpOnly"
+                                    "description": "Set-Cookie"
                                 }
                             }
                         }
@@ -154,8 +153,7 @@
                             "Set-Cookie": {
                                 "schema": {
                                     "type": "string",
-                                    "description": "Set-Cookie",
-                                    "example": "foodie=abcde12345; Path=/; HttpOnly"
+                                    "description": "Set-Cookie"
                                 }
                             }
                         }
@@ -165,7 +163,13 @@
         },
         "/api/v1/logout": {
             "delete": {
-                "security": [],
+                "security": [
+                    {
+                        "cookieAuth": [
+                            "foodie"
+                        ]
+                    }
+                ],
                 "tags": [
                     "Auth"
                 ],
@@ -195,7 +199,13 @@
         },
         "/api/v1/check-session": {
             "get": {
-                "security": [],
+                "security": [
+                    {
+                        "cookieAuth": [
+                            "foodie"
+                        ]
+                    }
+                ],
                 "tags": [
                     "Auth"
                 ],
@@ -233,7 +243,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -245,7 +255,7 @@
                 "operationId": "createPost",
                 "requestBody": {
                     "content": {
-                        "application/json": {
+                        "multipart/form-data": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
@@ -258,12 +268,21 @@
                                         "type": "string",
                                         "description": "Privacy",
                                         "example": "public"
+                                    },
+                                    "photos": {
+                                        "type": "array",
+                                        "description": "Photos",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "binary",
+                                            "description": "Photo"
+                                        }
                                     }
                                 }
                             }
                         }
                     },
-                    "required": true
+                    "required": false
                 },
                 "responses": {
                     "200": {
@@ -296,7 +315,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -346,7 +365,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -418,7 +437,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -463,7 +482,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -516,7 +535,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -563,7 +582,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -622,7 +641,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -699,7 +718,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -746,7 +765,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -785,7 +804,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -847,7 +866,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -897,7 +916,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -942,7 +961,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -1006,7 +1025,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -1067,7 +1086,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -1126,7 +1145,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -1173,7 +1192,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -1224,7 +1243,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -1271,7 +1290,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -1318,7 +1337,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -1368,7 +1387,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -1418,7 +1437,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -1468,7 +1487,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -1532,7 +1551,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -1571,7 +1590,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -1610,7 +1629,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -1657,7 +1676,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -1707,7 +1726,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -1757,7 +1776,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -1796,7 +1815,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -1832,7 +1851,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -1879,7 +1898,7 @@
                 "security": [
                     {
                         "cookieAuth": [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -1921,12 +1940,12 @@
                 }
             }
         },
-        "api/v1/{username}/edit" : {
+        "/api/v1/{username}/edit" : {
             "patch" : {
                 "security" : [
                     {
                         "cookieAuth" : [
-                            "JSESSIONID"
+                            "foodie"
                         ]
                     }
                 ],
@@ -1995,6 +2014,68 @@
                                             "type" : "string",
                                             "description" : "Content",
                                             "example" : "test"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/upload/{field}": {
+            "post": {
+                "security": [
+                    {
+                        "cookieAuth": [
+                            "foodie"
+                        ]
+                    }
+                ],
+                "tags": [
+                    "User"
+                ],
+                "summary": "Upload user image",
+                "description": "Upload user image",
+                "operationId": "uploadUserImage",
+                "parameters": [
+                    {
+                        "name": "field",
+                        "in": "path",
+                        "description": "Field",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "photo": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "description": {
+                                            "type": "string",
+                                            "description": "Content",
+                                            "example": "test"
                                         }
                                     }
                                 }
