@@ -18,6 +18,9 @@ import routers from './routes/createRouter';
 
 const debug = createDebug('server:server');
 
+const swaggerJSDoc = require('../swagger.json');
+const swaggerUi = require('swagger-ui-express');
+
 console.log(config);
 
 class Express {
@@ -42,7 +45,7 @@ class Express {
     this.app.use(logger('dev'));
     this.app.use(helmet());
     this.app.use(hpp());
-
+    this.app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerJSDoc));
     this.app.use(session(config.session as SessionOptions));
     this.app.use(passport.initialize());
     this.app.use(passport.session());

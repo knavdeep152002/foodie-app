@@ -1,3 +1,4 @@
+// @ts-ignore
 import bcrypt from 'bcrypt';
 import omit from 'lodash.omit';
 import { Document, isValidObjectId, model, Schema } from "mongoose";

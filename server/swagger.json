@@ -1,0 +1,398 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:9000",
+            "description": "Local server"
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "cookieAuth":{
+                "type": "apiKey",
+                "in": "cookie",
+                "name": "JSESSIONID"
+            }
+        },
+        "schemas": {
+            
+        }
+    },
+    "security": [
+        {
+            "cookieAuth": []
+        }
+    ],
+    "paths":{
+        "/api/v1/register": {
+            "post": {
+                "security": [],
+                "tags": [
+                    "User"
+                ],
+                "summary": "Register a new user",
+                "description": "Register a new user",
+                "operationId": "register",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "username": {
+                                        "type": "string",
+                                        "description": "Username",
+                                        "example": "test"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "description": "Email",
+                                        "example": "test@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "description": "Password",
+                                        "example": "test"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "username": {
+                                            "type": "string",
+                                            "description": "Username",
+                                            "example": "test"
+                                        },
+                                        "password": {
+                                            "type": "string",
+                                            "description": "Password",
+                                            "example": "test"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "headers": {
+                            "Set-Cookie": {
+                                "schema":{
+                                    "type": "string",
+                                    "description": "Set-Cookie",
+                                    "example": "foodie=abcde12345; Path=/; HttpOnly"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/authenticate": {
+            "post": {
+                "security": [],
+                "tags": [
+                    "User"
+                ],
+                "summary": "Login a user",
+                "description": "Login a user",
+                "operationId": "login",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "username": {
+                                        "type": "string",
+                                        "description": "Username",
+                                        "example": "test"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "description": "Password",
+                                        "example": "test"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "username": {
+                                            "type": "string",
+                                            "description": "Username",
+                                            "example": "test"
+                                        },
+                                        "password": {
+                                            "type": "string",
+                                            "description": "Password",
+                                            "example": "test"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "headers": {
+                            "Set-Cookie": {
+                                "schema":{
+                                    "type": "string",
+                                    "description": "Set-Cookie",
+                                    "example": "foodie=abcde12345; Path=/; HttpOnly"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/logout": {
+            "post": {
+                "security": [],
+                "tags": [
+                    "User"
+                ],
+                "summary": "Logout a user",
+                "description": "Logout a user",
+                "operationId": "logout",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Message",
+                                            "example": "Logout successful"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/check-session" :{
+            "get": {
+                "security": [],
+                "tags": [
+                    "User"
+                ],
+                "summary": "Check if user is logged in",
+                "description": "Check if user is logged in",
+                "operationId": "checkSession",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "username": {
+                                            "type": "string",
+                                            "description": "Username",
+                                            "example": "test"
+                                        },
+                                        "password": {
+                                            "type": "string",
+                                            "description": "Password",
+                                            "example": "test"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        
+                    }
+                }
+            }
+        },
+        "/api/v1/post": {
+            "post": {
+                "security": [
+                    {
+                        "cookieAuth": [
+                            "JSESSIONID"
+                        ]
+
+                    }
+                ],
+                "tags": [
+                    "Post"
+                ],
+                "summary": "Create a new post",
+                "description": "Create a new post",
+                "operationId": "createPost",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    
+                                    "description": {
+                                        "type": "string",
+                                        "description": "Content",
+                                        "example": "test"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "title": {
+                                            "type": "string",
+                                            "description": "Title",
+                                            "example": "test"
+                                        },
+                                        "content": {
+                                            "type": "string",
+                                            "description": "Content",
+                                            "example": "test"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/:username/posts" : {
+            "get": {
+                "security": [
+                    {
+                        "cookieAuth": [
+                            "JSESSIONID"
+                        ]
+
+                    }
+                ],
+                "tags": [
+                    "Post"
+                ],
+                "summary": "Get all posts by a user",
+                "description": "Get all posts by a user",
+                "operationId": "getPosts",
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "path",
+                        "description": "Username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "description": {
+                                                "type": "string",
+                                                "description": "Content",
+                                                "example": "test"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/search" :{
+            "get": {
+                "security": [
+                    {
+                        "cookieAuth": [
+                            "JSESSIONID"
+                        ]
+
+                    }
+                ],
+                "tags": [
+                    "Post"
+                ],
+                "summary": "Search for posts",
+                "description": "Search for posts",
+                "operationId": "searchPosts",
+                "parameters": [
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "Query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "description": {
+                                                "type": "string",
+                                                "description": "Content",
+                                                "example": "test"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+}

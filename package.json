@@ -17,5 +17,8 @@
   "author": "Group 22",
   "devDependencies": {
     "concurrently": "^5.3.0"
+  },
+  "dependencies": {
+    "swagger-ui-express": "^4.3.0"
   }
 }
