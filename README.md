@@ -1,8 +1,6 @@
 # Foodie
 A social media for food lovers and for people looking for new ideas for their next menu. A facebook/instagram-like inspired social media.
 
-![Heroku](https://heroku-badge.herokuapp.com/?app=foodie-social) ![Vercel](https://vercelbadge.vercel.app/api/jgudo/foodie)
-
 
 
 ## Table of contents
@@ -88,9 +86,6 @@ $ cd frontend // or cd server
 $ npm start
 ```
 
-## Deployment
-You can deploy your react app in [Vercel](http://vercel.app/) or whatever your preferred deployment platform. 
-And for the backend, you can deploy your server in [Heroku](https://heroku.com)
 
 ## Screenshots
 
