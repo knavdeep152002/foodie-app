@@ -1,95 +1,81 @@
-# Foodie
-A social media for food lovers and for people looking for new ideas for their next menu. A facebook/instagram-like inspired social media.
+# WBD Project - Foodie App
+
+Foodie, a social media exclusively for posting and sharing food content for the foodies by the foodies.
+
+## Group No 22
+
+- Gireesh Kumar Reddy Chumdi (S20190010036)
+
+-  Sai Bhargav Reddy Kanala (S20190010083)
+
+- Khadyothan Dasari (S20190010040)
+
+- Chandra Kiran G (S20190010029)
+
+- Navdeep Konkipudi (S20190010099)
 
 
 
-## Table of contents
-* [Features](#features)
-* [Technologies](#technologies)
-* [Installation](#installation)
-* [Run Locally](#run_local)
-* [Deployment](#deployment)
-* [Screenshots](#screenshots)
+## Tech Stack Used for the App
 
-## Features
-This web app consists of a basic features/functionalities of a socia media
-* Login and Registration
-* Notification
-* Private Messaging
-* Post CRUD functionality
-* Comment feature
-* Profile Customization
-* Followers/Following feature
-* Search Feature
+#### Frontend
 
-## Technologies
-|   Front End |  Back End   |
-| ----------- | ------------|
-| React 17.0.1| Node 12.18.1|
-| TypeScript  | MongoDB     |
-| Redux       | Mongoose    |
-| Redux-Saga  | SocketIO    |
-| React Router| Express JS  |
-| TailwindCSS | Passport JS |
-| PostCSS     | Google Cloud Storage|
-| Axios       |             |
+- ReactJS
 
-## Installation
-To install both ends (frontend/server). 
-```
-$ npm run init-project
-```
+- TypeScript
 
-Or to install them individually
-```
-$ cd frontend // or cd server
-$ npm install
-```
+- Redux
 
-## Run locally
-Before running the project, make sure to have the following done:
-* Download and install [MongoDB](https://www.mongodb.com/)
-* Create [Firebase Project](https://console.firebase.google.com/u/0/) for storage bucket
-* Create Google Service Account json key and configure ENV variable to your machine
+- Axios
 
-Create ```.env-dev``` or ```.end-prod``` env variables and set the following:
-```
-MONGODB_URI=<mongodb uri | default local = mongodb://localhost:27017 >
-DB_NAME=<your database name>
-PORT=<port eg: 9000>
-CLIENT_URL=<your frontend url, default: http://localhost:3000>
-SESSION_SECRET=<any secret key>
-SESSION_NAME=<any name you want>
-FIREBASE_PROJECT_ID=<firebase project id found on your firebase config settigs>
-FIREBASE_STORAGE_BUCKET_URL=<firebase bucket url found on your firebase config settigs>
-GOOGLE_APPLICATION_CREDENTIALS=<if you haven't set the ENV variable in your machine, you can set the relative path of the json file here>
-FACEBOOK_CLIENT_ID=<you app client id>
-FACEBOOK_CLIENT_SECRET=<you app client secret>
-GITHUB_CLIENT_ID=<you app client id>
-GITHUB_CLIENT_SECRET=<you app client id>
-```
+#### Backend
 
-You can get your Facebook client id/secret here [Facebook for developers](http://developers.facebook.com/) and for GitHub here [Register Github OAuth App](https://github.com/settings/applications/new) and set the necessary env vars above.  
+- Node
 
-After doing the steps above, you have to run your ```Mongo Server``` and finally you can now run both ends simultaneously by running: 
-```
-$ npm start
-```
+- MongoDB
 
-Or you can run them individually
-```
-$ npm run start-client // frontend
-$ npm run start-server // backend
+- SocketIO
 
-// Or you can change to individual directory then run 
-$ cd frontend // or cd server
-$ npm start
-```
+- Express JS
+
+- Passport JS
+
+- GCS
 
 
-## Screenshots
 
-![Foodie screenshot](https://raw.githubusercontent.com/jgudo/foodie/master/frontend/src/images/screen1.png)
-![Foodie screenshot](https://raw.githubusercontent.com/jgudo/foodie/master/frontend/src/images/screen2.png)
-![Foodie screenshot](https://raw.githubusercontent.com/jgudo/foodie/master/frontend/src/images/screen3.png)
-![Foodie screenshot](https://raw.githubusercontent.com/jgudo/foodie/master/frontend/src/images/screen4.png)
+## Instructions
+
+1. Unzip the folder `foodie-app`
+
+2. Install the required modules for both frontend and backend through the following command:
+   
+   ```bash
+   npm run init-project
+   ```
+
+3.  Download and install MongoDB locally.
+
+4. Create `.env-dev` to store env variables for running the development server and set the following contents:
+   
+   ```python
+   MONGODB_URI=<mongodb uri | default local = mongodb://localhost:2717 >
+   DB_NAME=<foodie
+   PORT=9000
+   CLIENT_URL=http://localhost:3000
+   SESSION_SECRET=<any secret key>
+   SESSION_NAME=foodie
+   FIREBASE_PROJECT_ID=<firebase project id found on your firebase config settigs>
+   FIREBASE_STORAGE_BUCKET_URL=<firebase bucket url found on your firebase config settigs>
+   CLOUDINARY_NAME=<Name>
+   CLOUDINARY_API_KEY=<API Key>
+   CLOUDINARY_API_SCERET=<API Secret>
+   ```
+
+5. Finally run the project using:
+   
+   ```bash
+   npm start
+   ```
+   
+   
